@@ -95,7 +95,7 @@ public class CadastroLivrosService {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    //@CrossOrigin(origins = "http://localhost:4200")
     public void deleteLivroById(Long id) {
         Livro livro = livroRepository.findById(id)
             .orElseThrow(() -> new BusinessException("Livro não encontrado para o ID informado."));
