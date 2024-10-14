@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.desafiotj.api.domain.assunto.Assunto;
-import com.desafiotj.api.domain.autor.Autor;
 import com.desafiotj.api.dto.assunto.AssuntoRequestDTO;
-import com.desafiotj.api.dto.autor.AutorRequestDTO;
 import com.desafiotj.api.service.assunto.CadastroAssuntosService;
 
 import jakarta.validation.Valid;

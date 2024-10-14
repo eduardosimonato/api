@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.desafiotj.api.domain.assunto.Assunto;
 import com.desafiotj.api.domain.autor.Autor;
@@ -92,6 +93,13 @@ public class CadastroLivrosService {
 
         return livroRepository.save(livro);
 
+    }
+
+    //@CrossOrigin(origins = "http://localhost:4200")
+    public void deleteLivroById(Long id) {
+        Livro livro = livroRepository.findById(id)
+            .orElseThrow(() -> new BusinessException("Livro não encontrado para o ID informado."));
+        livroRepository.deleteById(id);
     }
 
 }

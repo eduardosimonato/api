@@ -16,9 +16,11 @@ import com.desafiotj.api.service.livro.CadastroLivrosService;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PutMapping;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
+//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/livro")
 public class CadastroLivroController {
 
@@ -27,6 +29,7 @@ public class CadastroLivroController {
 
     @PostMapping
     public ResponseEntity<Livro> create (@Valid @RequestBody LivroRequestDTO livroRequestDTO) {
+        System.out.println(livroRequestDTO);
         Livro newLivro = this.cadastroLivrosService.createLivro(livroRequestDTO);
         return ResponseEntity.ok(newLivro);
     }
@@ -48,5 +51,11 @@ public class CadastroLivroController {
         Livro livro = this.cadastroLivrosService.updateLivro(livroRequestDTO);
         return ResponseEntity.ok(livro);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        cadastroLivrosService.deleteLivroById(id);
+        return ResponseEntity.noContent().build();  // Retorna 204 No Content após deletar
+    }    
 
 }

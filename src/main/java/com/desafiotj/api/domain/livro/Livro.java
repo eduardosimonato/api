@@ -1,10 +1,15 @@
 package com.desafiotj.api.domain.livro;
 
 import java.util.List;
+
+import org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor;
+
 import com.desafiotj.api.domain.assunto.Assunto;
 import com.desafiotj.api.domain.autor.Autor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,18 +39,21 @@ public class Livro {
     private Integer edicao;
     private String anopublicacao;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "livro_autor", 
         joinColumns = @JoinColumn(name = "livro_id"), 
         inverseJoinColumns = @JoinColumn(name = "autor_id"))
     private List<Autor> autores;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "livro_assunto", 
         joinColumns = @JoinColumn(name = "livro_id"), 
         inverseJoinColumns = @JoinColumn(name = "assunto_id"))
     private List<Assunto> assuntos;
+
+    @JsonIgnore
+    private transient ByteBuddyInterceptor hibernateLazyInitializer;
 
 }

@@ -3,6 +3,8 @@ package com.desafiotj.api.domain.autor;
 import java.util.List;
 
 import com.desafiotj.api.domain.livro.Livro;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +32,7 @@ public class Autor {
     private String nome;
 
     @ManyToMany(mappedBy = "autores")
+    @JsonIgnore
     private List<Livro> livros;
 
 }
