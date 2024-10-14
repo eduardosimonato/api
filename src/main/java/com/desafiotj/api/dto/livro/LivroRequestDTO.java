@@ -25,8 +25,11 @@ public record LivroRequestDTO(
 
     @NotNull(message = "O ano da publição é obrigatório.")
     @Pattern(regexp = "^[0-9]{4}$", message = "O ano de publicação deve ter 4 dígitos.")
-    String anopublicacao, 
+    String anopublicacao,
     
-    List<Autor> autores, List<Assunto> assuntos ) {
+    List<Autor> autores, 
+    List<Assunto> assuntos ) 
+    
+    {
 
 }

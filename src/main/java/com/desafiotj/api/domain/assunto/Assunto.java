@@ -2,6 +2,8 @@ package com.desafiotj.api.domain.assunto;
 
 import java.util.List;
 import com.desafiotj.api.domain.livro.Livro;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +32,7 @@ public class Assunto {
     private String descricao;
 
     @ManyToMany(mappedBy = "assuntos")
+    @JsonIgnore
     private List<Livro> livros;
 
 }
